@@ -2,20 +2,42 @@
 
 namespace AppBundle\Controller;
 
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/books/{bookId}/sections/{sectionId}")
+     * @Method({"GET"})
+     *
+     * @ApiDoc(
+     *      resource=true,
+     *      description="Return xml content of a section.",
+     *      requirements={
+     *          {
+     *              "name" = "bookId",
+     *              "dataType" = "string",
+     *              "description" = "Book ID"
+     *          },
+     *          {
+     *              "name" = "sectionId",
+     *              "dataType" = "string",
+     *              "description" = "Section ID"
+     *          }
+     *      },
+     *      section="Section",
+     *      views = { "default", "athena" }
+     * )
+     *
+     * @return Response
      */
-    public function indexAction(Request $request)
+    public function getSectionAction($bookId, $sectionId)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        return $this->get('basex_http')->getSection($bookId, $sectionId, true);
     }
 }

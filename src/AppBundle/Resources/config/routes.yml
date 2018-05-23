@@ -1,0 +1,4 @@
+api_default:
+    resource: "@AppBundle/Controller/DefaultController.php"
+    prefix:   /api
+    type:     annotation

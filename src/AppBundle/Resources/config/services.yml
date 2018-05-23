@@ -1,0 +1,15 @@
+services:
+    basex_http_client:
+        class: AppBundle\Service\BaseXHttpClient
+        arguments:
+            - "%basex_user%"
+            - "%basex_pass%"
+            - "%basex_host%"
+            - "%basex_http_port%"
+            - "%basex_http_scheme%"
+
+    basex_http:
+        class: AppBundle\Service\BaseXHttpService
+        arguments:
+            - "%basex_dbname%"
+            - "@basex_http_client"

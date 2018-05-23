@@ -18,7 +18,9 @@ framework:
     form: ~
     csrf_protection: ~
     validation: { enable_annotations: true }
-    #serializer: { enable_annotations: true }
+    serializer: { enable_annotations: true }
+    templating:
+            engines: ['twig']
     default_locale: '%locale%'
     trusted_hosts: ~
     session:
@@ -65,3 +67,20 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# Nelmio Api Doc Configuration
+nelmio_api_doc:
+    default_sections_opened: true
+    motd:
+        template: ':NelmioApiDoc:motd.html.twig'
+    sandbox:
+        authentication:
+            delivery: http
+            type: bearer
+        accept_type: 'application/json'
+        body_format:
+            formats: ['json']
+            default_format: 'json'
+        request_format:
+            formats: {jsonld: application/ld+json, json: application/json}
+            default_format: json

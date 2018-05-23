@@ -17,3 +17,12 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    # BaseX Settings
+    basex_host: 127.0.0.1
+    basex_port: 1984
+    basex_http_port: 8984
+    basex_http_scheme: http
+    basex_user: admin
+    basex_pass: admin
+    basex_dbname: ICCCT
